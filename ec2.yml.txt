@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  vars_files:
+    - ec2_variables.yml
+  tasks:
+    - name: "Create EC2 Instance"
+      amazon.aws.ec2_instance:
+        key_name: "{{ key_name }}"
+        image_id: "{{ image }}"
+        security_group: "{{ group }}"
+        instance_type: "{{ instance_type }}"
+        wait: yes
+        count: 1
+        region: "us-east-1"
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_key }}"
